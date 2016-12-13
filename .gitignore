@@ -1,3 +1,21 @@
+# ========================
+# Games DataBase
+# ========================
+*.gtd
+
+# ========================
+# Python
+# ========================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# ========================
+# Windows
+# ========================
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
