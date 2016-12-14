@@ -6,6 +6,6 @@ if __name__ == "__main__":
 	myDataManager = dataManager.dataManager()
 
 	scrappedData = myScrapper.scrap()
-	storedData = myDataManager.loadGamesData()
-	myDataManager.update(storedData, scrappedData)
-	myDataManager.storeGamesData(storedData)
+
+	myDataManager.update(scrappedData)
+	myDataManager.storeGamesData()
