@@ -3,10 +3,10 @@ import json
 gamesDataFile = "data/gamesdata.gtd"
 
 
-#Manages tasks revolving saving, updating and storing games data
+# Manages tasks revolving saving, updating and storing games data
 class dataManager:
 
-	#loads stored data from previous sessions, parsed from JSON to dictionary
+	# loads stored data from previous sessions, parsed from JSON to dictionary
 	def loadGamesData(self):
 		try: 
 			f = open(gamesDataFile, 'r')
@@ -19,8 +19,8 @@ class dataManager:
 
 		return storedData
 
-	#Takes 2 dictionaries: @stored is the previous data stored in gamesdata.gtd, @scrapped is the new data scrapped from g2a.com
-	#Returns updates @stored based on @scrapped, in which games with prior records have been added the new data, and games without prior records have been added
+	# Takes 2 dictionaries: @stored is the previous data stored in gamesdata.gtd, @scrapped is the new data scrapped from g2a.com
+	# Returns updates @stored based on @scrapped, in which games with prior records have been added the new data, and games without prior records have been added
 	def update(self, stored, scrapped):
 		for game in scrapped:
 			#if there is no prior data from this game, it must be added to the stored dictionary
@@ -28,11 +28,25 @@ class dataManager:
 				newGame = {'title': scrapped[game]['title'], 'records': []}
 				stored[game] = newGame
 
-			#then the new record can be added
-			record = {'dateAndTime': time.strftime("%c"), 'price': scrapped[game]['price']}
-			stored[game]['records'].append(record)
+			# then the new record can be added
+			# Only the last price retrieved each day is stored. If there is already an stored price from the present day, it is overwritten
+			date = time.strftime("%x")
 
-	#Writes @data formated as JSON to a file
+			# If the last record is from this day, it's price is overwritten
+			if len(stored[game]['records']) > 0:
+				if stored[game]['records'][-1]['dateAndTime'] == date : 
+					stored[game]['records'][-1]['price'] = scrapped[game]['price']
+
+				else:
+					record = {'dateAndTime': date, 'price': scrapped[game]['price']}
+					stored[game]['records'].append(record)
+			else:
+				record = {'dateAndTime': date, 'price': scrapped[game]['price']}
+				stored[game]['records'].append(record)
+
+			
+
+	# Writes @data formated as JSON to a file
 	def storeGamesData(self, data):
 		try: 
 			f = open(gamesDataFile, 'w')
