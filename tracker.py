@@ -1,8 +1,6 @@
-import sys
-from PyQt4 import QtGui
 import scrapper
 import dataManager
-import ui.mainWindow
+import ui.trackerGui
 
 def main():
     myScrapper = scrapper.scrapper()
@@ -13,9 +11,7 @@ def main():
     # myDataManager.update(storedData, scrappedData)
     # myDataManager.storeGamesData(storedData)
 
-    app = QtGui.QApplication(sys.argv)
-    w = ui.mainWindow.mainWindow(storedData)  
-    sys.exit(app.exec_())
+    myGUI = ui.trackerGui.trackerGui(storedData)
 
 
 if __name__ == "__main__":
