@@ -9,7 +9,7 @@ class dataManager:
 	#loads stored data from previous sessions, parsed from JSON to dictionary
 	def loadGamesData(self):
 		try: 
-			f = open(gamesDataFile, 'r')
+			f = open('data/dummydata.gtd', 'r')
 			storedData = json.load(f)
 			f.close()
 
