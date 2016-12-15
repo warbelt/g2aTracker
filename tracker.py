@@ -9,7 +9,7 @@ def main():
     myDataManager.update(myScrapper)
     myDataManager.storeGamesData()
 
-    myGUI = ui.trackerGui.trackerGui(myDataManager.storedData)
+    myGUI = ui.trackerGui.trackerGui(myDataManager)
 
 if __name__ == "__main__":
     main()

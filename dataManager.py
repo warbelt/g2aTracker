@@ -56,6 +56,10 @@ class dataManager:
 		except IOError:
 			print("Could not save data to 'gamesdata.gtd'")
 
+	# Returns amount of games stored in dictionary
+	def getGamesDBLen(self):
+		return len(self.storedData)
+
 	# Returns a list of the IDs of every game in @self.storedData
 	def getGamesIDsList(self):
 		return self.storedData.keys()
@@ -70,3 +74,10 @@ class dataManager:
 		# Check first if the game is already being tracked, if it is not, then add it to the dictionary
 		if titleAndId['id'] not in self.storedData.keys():
 			self.storedData[titleAndId['id']] = {'title' : titleAndId['title'], 'records' : [record]}
+
+	# Returns dict of all records stored for a game with id equal to @gameID
+	def getGameRecords(self, gameID):
+		return self.storedData[gameID]['records']
+
+	def getGameTitle(self, gameID):
+		return self.storedData[gameID]['title']

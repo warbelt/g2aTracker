@@ -4,12 +4,12 @@ from PyQt4 import QtGui, QtCore
 olderPricesDisplayedMain = 3
 
 class gamesTableModel(QtCore.QAbstractTableModel):
-    def __init__(self, data, parent = None):
+    def __init__(self, dataManager, parent = None):
         QtCore.QAbstractTableModel.__init__(self,parent)
-        self.__data = data
+        self.dM = dataManager
 
     def rowCount(self , parent):
-        return len(self.__data.keys())
+        return self.dM.getGamesDBLen()
 
     def columnCount(self, parent):
         # List the last @olderPricesDisplayedMain prices, plus name and difference of price
@@ -19,14 +19,14 @@ class gamesTableModel(QtCore.QAbstractTableModel):
         row = index.row()
         column = index.column()
 
-        gameID = self.__data.keys()[row]
-        records = self.__data[gameID]['records']
+        gameID = self.dM.getGamesIDsList()[row]
+        records = self.dM.getGameRecords(gameID)
 
         #Displaying data
         if role == QtCore.Qt.DisplayRole:
             # First column: game name
             if column == 0:
-                value = self.__data[gameID]['title']
+                value = self.dM.getGameTitle(gameID)
                 return QtCore.QString(str(value))
 
             # Next @olderPricesDisplayedMain columns show older prices
