@@ -3,41 +3,70 @@ import json
 gamesDataFile = "data/gamesdata.gtd"
 
 
-#Manages tasks revolving saving, updating and storing games data
+# Manages tasks revolving saving, updating and storing games data
 class dataManager:
+	def __init__(self):
+		self.storedData = self.loadGamesData()
 
-	#loads stored data from previous sessions, parsed from JSON to dictionary
+	# loads stored data from previous sessions, parsed from JSON to dictionary
 	def loadGamesData(self):
+		data = {}
+
 		try: 
 			f = open(gamesDataFile, 'r')
-			storedData = json.load(f)
+			try:
+				data = json.load(f)
+			except:
+				pass
 			f.close()
 
 		except IOError:
 			print("No prior data was found")
-			storedData = {}
 
-		return storedData
+		return data
 
-	#Takes 2 dictionaries: @stored is the previous data stored in gamesdata.gtd, @scrapped is the new data scrapped from g2a.com
-	#Returns updates @stored based on @scrapped, in which games with prior records have been added the new data, and games without prior records have been added
-	def update(self, stored, scrapped):
+	# Takes @scrapper: scrapper object created in main function
+	# Updates @self.storedData with data retrieved by @scrapper, in which games with prior records have been added the new data, and games without prior records have been added
+	def update(self, scrapper):
+		scrapped = scrapper.scrap(self.getGamesIDsList())
+
 		for game in scrapped:
-			#if there is no prior data from this game, it must be added to the stored dictionary
-			if game not in stored.keys():
-				newGame = {'title': scrapped[game]['title'], 'records': []}
-				stored[game] = newGame
+			# Only the last price retrieved each day is stored. If there is already an stored price from the present day, it is overwritten
+			date = time.strftime("%x")
 
-			#then the new record can be added
-			record = {'dateAndTime': time.strftime("%c"), 'price': scrapped[game]['price']}
-			stored[game]['records'].append(record)
+			# If the last record is from this day, it's price is overwritten
+			if len(self.storedData[game]['records']) > 0:
+				if self.storedData[game]['records'][-1]['dateAndTime'] == date : 
+					self.storedData[game]['records'][-1]['price'] = scrapped[game]
 
-	#Writes @data formated as JSON to a file
-	def storeGamesData(self, data):
+				else:
+					record = {'dateAndTime': date, 'price': scrapped[game]}
+					self.storedData[game]['records'].append(record)
+			else:
+				record = {'dateAndTime': date, 'price': scrapped[game]}
+				self.storedData[game]['records'].append(record)
+
+	# Writes @self.storedData formated as JSON to a file
+	def storeGamesData(self):
 		try: 
 			f = open(gamesDataFile, 'w')
-			f.write(json.dumps(data))
+			f.write(json.dumps(self.storedData))
 			f.close()
 
 		except IOError:
 			print("Could not save data to 'gamesdata.gtd'")
+
+	# Returns a list of the IDs of every game in @self.storedData
+	def getGamesIDsList(self):
+		return self.storedData.keys()
+
+	# @url is the address of the product to keep track of. dataManager adds the new product with a fresh record to its dictionary
+	def addNewGame(self, scrapper, url):
+		titleAndId = scrapper.getGameTitleAndID(url)
+		price = scrapper.getPrice(titleAndId['id'])
+
+		record = {'dateAndTime' : time.strftime("%x"), 'price' : price}
+
+		# Check first if the game is already being tracked, if it is not, then add it to the dictionary
+		if titleAndId['id'] not in self.storedData.keys():
+			self.storedData[titleAndId['id']] = {'title' : titleAndId['title'], 'records' : [record]}

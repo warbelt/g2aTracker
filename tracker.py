@@ -6,13 +6,10 @@ def main():
     myScrapper = scrapper.scrapper()
     myDataManager = dataManager.dataManager()
 
-    # scrappedData = myScrapper.scrap()
-    storedData = myDataManager.loadGamesData()
-    # myDataManager.update(storedData, scrappedData)
-    # myDataManager.storeGamesData(storedData)
+    myDataManager.update(myScrapper)
+    myDataManager.storeGamesData()
 
-    myGUI = ui.trackerGui.trackerGui(storedData)
-
+    myGUI = ui.trackerGui.trackerGui(myDataManager.storedData)
 
 if __name__ == "__main__":
     main()
