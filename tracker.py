@@ -4,10 +4,9 @@ import ui.trackerGui
 
 def main():
     myScrapper = scrapper.scrapper()
-    myDataManager = dataManager.dataManager()
+    myDataManager = dataManager.dataManager(myScrapper)
 
-    myDataManager.update(myScrapper)
-    myDataManager.storeGamesData()
+    myDataManager.update()
 
     myGUI = ui.trackerGui.trackerGui(myDataManager)
 

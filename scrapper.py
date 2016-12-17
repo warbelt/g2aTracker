@@ -3,22 +3,33 @@ import contextlib
 import json
 
 
-#Returns first appearance of a substring that is preceded by @before and followed by @after
+#Returns first appearance of a substring that is preceded by @before and followed by @after, returns -1 if not found
 #Utilized for extracting certain values from the unparsed html source
 def getSubSBetween(source, before, after):
-	return source.split(before)[1].split(after)[0]
+	try:
+		return source.split(before)[1].split(after)[0]
+	except:
+		return -1
+	return result
 
 #Manages tasks for scrapping www.g2a.com looking for prices
 class scrapper:
-	#Retrieves the title and product ID from the url passed as @url, returns them as an id:title pair
+	#Retrieves the title and product ID from the url passed as @url, returns them as an id:title pair, returns -1 if url does not contain a valid pair
 	def getGameTitleAndID(self, url):
 		#Get raw html from url. Prices information is served asynchronously in a json so we use this to get the title and ID of the product, and url of said json
-		with contextlib.closing(urllib.urlopen(url)) as handle:
-			rawHTML = handle.read()
+		try:
+			with contextlib.closing(urllib.urlopen(url)) as handle:
+				rawHTML = handle.read()
+		except: 
+			return -1
 
 		# Extract title and pID from html
 		sTitle = getSubSBetween(rawHTML, "<title>", " - G2A.COM") #Game title
 		pID = getSubSBetween(rawHTML, "productID = ", ";") #internal ID used by g2a to identify each product. Neded in order to get the json url
+
+		# If no valid pair is found, return -1
+		if sTitle == -1 or pID ==  -1:
+			return -1
 
 		return {'title': sTitle, 'id': pID}
 
