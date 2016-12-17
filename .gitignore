@@ -2,6 +2,7 @@
 # Games DataBase
 # ========================
 *.gtd
+!dummydata.gtd
 
 # ========================
 # Python
