@@ -97,7 +97,7 @@ class mainWindow(QtGui.QMainWindow):
         if result == -1:
             self.textBoxUrl.setText("Error")
         else:
-            self.textBoxUrl.setText("Added" + result)
+            self.textBoxUrl.setText("Added: " + result)
 
     # Remove game clicked
     def buttonRemoveGameClicked(self):

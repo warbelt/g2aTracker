@@ -132,13 +132,18 @@ class gamesTableModel(QtCore.QAbstractTableModel):
     # Calls dataManager to add product located at @url, passes result from dataManager.addNewGame: title of product if OK, else -1
     # dataManager handles validation
     def addNewGame(self, url):
+        self.layoutAboutToBeChanged.emit()
+
         result = self.dM.addNewGame(url)
 
         # Emit signal to refresh table
         topLeft = self.createIndex(0,0)
         bottomRight = self.createIndex(self.rowCount(self), self.columnCount(self))
-        self.dataChanged.emit(topLeft, bottomRight)
+        print bottomRight.row()
+        print bottomRight.column()
 
+        self.dataChanged.emit(topLeft, bottomRight)
+        self.layoutChanged.emit()
         return result
 
     # Calls dataManager to remove product at @row. dataManager handles validation
