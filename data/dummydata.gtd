@@ -1,108 +1,226 @@
 {
-  "117": {
+  "81": {
+    "url": "https://www.g2a.com/far-cry-3.html",
     "records": [
       {
-        "price": 9.29,
-        "dateAndTime": "12/13/16 15:27:38"
+        "price": 4.99,
+        "dateAndTime": "12/14/16"
+      },
+      {
+        "price": 4.95,
+        "dateAndTime": "12/15/16"
+      },
+      {
+        "price": 4.96,
+        "dateAndTime": "12/16/16"
+      },
+      {
+        "price": 4.96,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 4.9,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 4.9,
+        "dateAndTime": "12/19/16"
       }
     ],
-    "title": "Borderlands GOTY EDITION STEAM CD-KEY GLOBAL - G2A.COM"
+    "title": "Far Cry 3 UPLAY CD-KEY GLOBAL"
   },
-  "2938": {
+  "988": {
+    "url": "https://www.g2a.com/mirror-s-edge-origin-cd-key-global.html",
     "records": [
       {
-        "price": 5.93,
-        "dateAndTime": "12/13/16 15:27:49"
+        "price": 1.55,
+        "dateAndTime": "12/16/16"
       },
       {
-        "price": 5.93,
-        "dateAndTime": "12/13/16 23:59:55"
+        "price": 1.55,
+        "dateAndTime": "12/17/16"
       },
       {
-        "price": 5.8,
-        "dateAndTime": "12/14/16 00:01:00"
+        "price": 1.55,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 1.55,
+        "dateAndTime": "12/19/16"
       }
     ],
-    "title": "Dishonored - Definitive Edition STEAM CD-KEY GLOBAL - G2A.COM"
+    "title": "Mirror's Edge ORIGIN CD-KEY GLOBAL"
   },
-  "5398": {
+  "3247": {
+    "url": "https://www.g2a.com/the-stanley-parable-steam-cd-key-global.html",
     "records": [
       {
-        "price": 5.55,
-        "dateAndTime": "12/13/16 15:27:38"
+        "price": 2.91,
+        "dateAndTime": "12/15/16"
       },
       {
-        "price": 5.55,
-        "dateAndTime": "12/13/16 15:27:49"
+        "price": 2.91,
+        "dateAndTime": "12/16/16"
       },
       {
-        "price": 5.55,
-        "dateAndTime": "12/13/16 15:31:59"
+        "price": 2.89,
+        "dateAndTime": "12/17/16"
       },
       {
-        "price": 5.49,
-        "dateAndTime": "12/13/16 23:59:55"
+        "price": 2.86,
+        "dateAndTime": "12/18/16"
       },
       {
-        "price": 7.12,
-        "dateAndTime": "12/14/16 00:01:00"
+        "price": 2.86,
+        "dateAndTime": "12/19/16"
       }
     ],
-    "title": "Dragon Age: Origins - Ultimate Edition ORIGIN CD-KEY GLOBAL - G2A.COM"
+    "title": "The Stanley Parable STEAM CD-KEY GLOBAL"
   },
-  "34812": {
+  "4922": {
+    "url": "https://www.g2a.com/papers-please-steam-cd-key-global.html",
     "records": [
       {
-        "price": 11.88,
-        "dateAndTime": "12/13/16 15:27:38"
-      },
-      {
-        "price": 11.88,
-        "dateAndTime": "12/13/16 15:27:49"
-      },
-      {
-        "price": 11.88,
-        "dateAndTime": "12/13/16 15:31:59"
-      },
-      {
-        "price": 11.88,
-        "dateAndTime": "12/14/16 00:01:00"
+        "price": 4,
+        "dateAndTime": "12/19/16"
       }
     ],
-    "title": "Keep Talking and Nobody Explodes STEAM CD-KEY GLOBAL - G2A.COM"
+    "title": "Papers, Please STEAM CD-KEY GLOBAL"
+  },
+  "5147": {
+    "url": "https://www.g2a.com/bioshock-infinite-season-pass-dlc-steam-cd-key-global.html",
+    "records": [
+      {
+        "price": 5.98,
+        "dateAndTime": "12/15/16"
+      },
+      {
+        "price": 5.98,
+        "dateAndTime": "12/16/16"
+      },
+      {
+        "price": 5.97,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 5.98,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 5.98,
+        "dateAndTime": "12/19/16"
+      }
+    ],
+    "title": "BioShock Infinite - Season Pass DLC STEAM CD-KEY GLOBAL"
+  },
+  "6098": {
+    "url": "https://www.g2a.com/far-cry-2-fortune-s-edition-steam-cd-key-global.html",
+    "records": [
+      {
+        "price": 4.99,
+        "dateAndTime": "12/15/16"
+      },
+      {
+        "price": 4.98,
+        "dateAndTime": "12/16/16"
+      },
+      {
+        "price": 4.98,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 4.98,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 4.98,
+        "dateAndTime": "12/19/16"
+      }
+    ],
+    "title": "Far Cry 2: Fortune's Edition STEAM CD-KEY GLOBAL"
+  },
+  "11930": {
+    "url": "https://www.g2a.com/borderlands-the-pre-sequel-steam-cd-key-global.html",
+    "records": [
+      {
+        "price": 5.58,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 5.58,
+        "dateAndTime": "12/19/16"
+      }
+    ],
+    "title": "Borderlands: The Pre-Sequel STEAM CD-KEY GLOBAL"
+  },
+  "12391": {
+    "url": "https://www.g2a.com/the-witcher-3-wild-hunt-steam-cd-key-global.html",
+    "records": [
+      {
+        "price": 14.7,
+        "dateAndTime": "12/15/16"
+      },
+      {
+        "price": 14.6,
+        "dateAndTime": "12/16/16"
+      },
+      {
+        "price": 17.61,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 17.49,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 17.2,
+        "dateAndTime": "12/19/16"
+      }
+    ],
+    "title": "The Witcher 3: Wild Hunt - Buy Steam PC CD-Key (Global)"
+  },
+  "20172": {
+    "url": "https://www.g2a.com/cities-skylines-steam-cd-key-global.html",
+    "records": [
+      {
+        "price": 5.75,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 6,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 6,
+        "dateAndTime": "12/19/16"
+      }
+    ],
+    "title": "Cities: Skylines STEAM CD-KEY GLOBAL"
   },
   "38871": {
+    "url": "https://www.g2a.com/dying-light-the-following-enhanced-edition-steam-cd-key-global.html",
     "records": [
       {
-        "price": 21.49,
-        "dateAndTime": "12/13/16 15:31:59"
+        "price": 21.95,
+        "dateAndTime": "12/15/16"
       },
       {
-        "price": 21.29,
-        "dateAndTime": "12/13/16 23:59:55"
+        "price": 21.98,
+        "dateAndTime": "12/16/16"
+      },
+      {
+        "price": 21.98,
+        "dateAndTime": "12/17/16"
+      },
+      {
+        "price": 21.95,
+        "dateAndTime": "12/18/16"
+      },
+      {
+        "price": 21.95,
+        "dateAndTime": "12/19/16"
       }
     ],
-    "title": "Dying Light: The Following - Enhanced Edition STEAM CD-KEY GLOBAL - G2A.COM"
-  },
-  "49680": {
-    "records": [
-      {
-        "price": 23.99,
-        "dateAndTime": "12/13/16 15:27:38"
-      },
-      {
-        "price": 33.99,
-        "dateAndTime": "12/13/16 15:31:59"
-      },
-      {
-        "price": 29,
-        "dateAndTime": "12/13/16 23:59:55"
-      },
-      {
-        "price": 29,
-        "dateAndTime": "12/14/16 00:01:00"
-      }
-    ],
-    "title": "Sid Meiers Civilization VI - Buy Steam CD-Key Preorder (ROW) - G2A.COM"
+    "title": "Dying Light: The Following - Enhanced Edition STEAM CD-KEY GLOBAL"
   }
 }

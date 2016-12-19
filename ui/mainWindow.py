@@ -1,5 +1,6 @@
 from PyQt4 import QtGui, QtCore
 import gamesTableModel
+import webbrowser
 
 #App's front tab. Displays basic data from tracked games
 class mainWindow(QtGui.QMainWindow):
@@ -11,13 +12,15 @@ class mainWindow(QtGui.QMainWindow):
     def initUI(self):
         # Init main window items
         self.initGamesTable()
-        self.initTextBoxUrl()
+        self.initLineEditUrl()
         self.initButtonAddGame()
         self.initButtonRemoveGame()
+        self.initButtonViewInBrowser()
 
         # Connect buttons' clicked event to buttonClicled slot
         self.buttonAddGame.clicked.connect(self.buttonClicked)
         self.buttonRemoveGame.clicked.connect(self.buttonClicked)
+        self.buttonViewInBrowser.clicked.connect(self.buttonClicked)
 
         # Position and size
         self.setGeometry(300,300,900,600)
@@ -59,10 +62,11 @@ class mainWindow(QtGui.QMainWindow):
         self.gamesTable.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
 
     # Text box for new item url
-    def initTextBoxUrl(self):
-        self.textBoxUrl = QtGui.QLineEdit(self)
-        self.textBoxUrl.move(150, 450)
-        self.textBoxUrl.setFixedWidth(400)
+    def initLineEditUrl(self):
+        self.lineEditUrl = QtGui.QLineEdit(self)
+        self.lineEditUrl.setPlaceholderText("Paste product's url here...")
+        self.lineEditUrl.move(150, 450)
+        self.lineEditUrl.setFixedWidth(400)
 
     # Add game button
     def initButtonAddGame(self):
@@ -76,6 +80,12 @@ class mainWindow(QtGui.QMainWindow):
         self.buttonRemoveGame.setFixedWidth(150)
         self.buttonRemoveGame.move(700,450)
 
+    # Open product's url button
+    def initButtonViewInBrowser(self):
+        self.buttonViewInBrowser = QtGui.QPushButton("View game in browser", self)
+        self.buttonViewInBrowser.setFixedWidth(150)
+        self.buttonViewInBrowser.move(50, 480)
+
     # Handles button clicks in main window
     def buttonClicked(self):
         sender = self.sender()
@@ -83,10 +93,12 @@ class mainWindow(QtGui.QMainWindow):
             self.buttonAddGameClicked()
         elif sender == self.buttonRemoveGame:
             self.buttonRemoveGameClicked()
+        elif sender == self.buttonViewInBrowser:
+            self.buttonViewInBrowserClicked()
 
     # Add game clicked
     def buttonAddGameClicked(self):
-        url = str(self.textBoxUrl.text())
+        url = str(self.lineEditUrl.text())
 
         # Check if there is enything to pass to model
         if url == "" or url == None:
@@ -95,9 +107,9 @@ class mainWindow(QtGui.QMainWindow):
         # Call to model to add game to data storage
         result = self.myGamesTableModel.addNewGame(url)
         if result == -1:
-            self.textBoxUrl.setText("Error")
+            self.lineEditUrl.setText("Error")
         else:
-            self.textBoxUrl.setText("Added: " + result)
+            self.lineEditUrl.setText("Added: " + result)
 
     # Remove game clicked
     def buttonRemoveGameClicked(self):
@@ -118,3 +130,16 @@ class mainWindow(QtGui.QMainWindow):
             # Clear selection and call model to remove product
             self.gamesTable.clearSelection()
             self.myGamesTableModel.removeGame(row)
+
+    # View in browser button clicked
+    def buttonViewInBrowserClicked(self):
+        try:
+            # Get selected row
+            row = self.gamesTable.selectedIndexes()[0].row()
+        except:
+            return
+
+        url = ""
+        url = self.myGamesTableModel.getGameUrl(row)
+        print url
+        webbrowser.open_new_tab(url)

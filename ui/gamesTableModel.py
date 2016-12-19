@@ -139,8 +139,6 @@ class gamesTableModel(QtCore.QAbstractTableModel):
         # Emit signal to refresh table
         topLeft = self.createIndex(0,0)
         bottomRight = self.createIndex(self.rowCount(self), self.columnCount(self))
-        print bottomRight.row()
-        print bottomRight.column()
 
         self.dataChanged.emit(topLeft, bottomRight)
         self.layoutChanged.emit()
@@ -155,3 +153,6 @@ class gamesTableModel(QtCore.QAbstractTableModel):
         bottomRight = self.createIndex(self.rowCount(self), self.columnCount(self))
 
         self.dataChanged.emit(topLeft, bottomRight)
+
+    def getGameUrl(self, row):
+        return self.dM.getGameUrl(self.dM.getGamesIDsList()[row])

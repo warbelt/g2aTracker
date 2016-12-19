@@ -60,14 +60,6 @@ class dataManager:
         except IOError:
             print("Could not save data to 'gamesdata.gtd'")
 
-    # Returns amount of games stored in dictionary
-    def getGamesDBLen(self):
-        return len(self.storedData)
-
-    # Returns a list of the IDs of every game in @self.storedData
-    def getGamesIDsList(self):
-        return self.storedData.keys()
-
     # @url is the address of the product to keep track of. dataManager adds the new product with a fresh record to its dictionary
     # Returns title of added game if successful, else returns -1
     def addNewGame(self, url):
@@ -81,8 +73,8 @@ class dataManager:
 
         record = {'dateAndTime' : time.strftime("%x"), 'price' : price}
         # Check first if the game is already being tracked, if it is not, then add it to the dictionary
-        if titleAndId['id'] not in self.storedData.keys():
-            self.storedData[titleAndId['id']] = {'title' : titleAndId['title'], 'records' : [record]}
+        if titleAndId['id'] not in self.getGamesIDsList():
+            self.storedData[titleAndId['id']] = {'title' : titleAndId['title'], 'url' : url, 'records' : [record]}
 
         # Save data to file after adding the product
         self.storeGamesData()
@@ -92,8 +84,15 @@ class dataManager:
     # Removes game whose id is situated at position @index in the keys list of the prudict data dictionary
     def removeGame(self, index):
         self.storedData.pop(self.getGamesIDsList()[index])
-        # Save data to file after removing product
         self.storeGamesData()
+
+    # Returns amount of games stored in dictionary
+    def getGamesDBLen(self):
+        return len(self.storedData)
+
+    # Returns a list of the IDs of every game in @self.storedData
+    def getGamesIDsList(self):
+        return self.storedData.keys()
 
     # Returns dict of all records stored for a game with id equal to @gameID
     def getGameRecords(self, gameID):
@@ -102,3 +101,7 @@ class dataManager:
     # Returns title of product associated to @gameID
     def getGameTitle(self, gameID):
         return self.storedData[gameID]['title']
+
+    # Returns url of product associated to @gameID
+    def getGameUrl(self, gameID):
+        return self.storedData[gameID]['url']
