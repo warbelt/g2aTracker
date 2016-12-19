@@ -154,5 +154,14 @@ class gamesTableModel(QtCore.QAbstractTableModel):
 
         self.dataChanged.emit(topLeft, bottomRight)
 
+    # Calls dataManager to change the title of a product at @row to @newTitle
+    def setGameTitle(self, row, newTitle):
+        self.dM.setGameTitle(row, newTitle)
+
+        topLeft = self.createIndex(row,0)
+        bottomRight = self.createIndex(row, 0)
+
+        self.dataChanged.emit(topLeft, bottomRight)
+
     def getGameUrl(self, row):
         return self.dM.getGameUrl(self.dM.getGamesIDsList()[row])

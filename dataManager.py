@@ -2,6 +2,33 @@ import time
 import json
 gamesDataFile = "data/gamesdata.gtd"
 
+##########################################################
+#####                                                #####
+#####                  Data Format                   #####
+#####                                                #####
+##########################################################
+### 
+### Product data is stored as a dictionary. Each key is the unique ID of a product
+### Each value is a dictionary, the data of the product associated to that ID
+### The product dictionary contains three keys:  
+### 'title' : title of the product
+### 'url' : url of the product's webpage
+### 'records' : list of dictionaries that contains every past price recorded
+###
+### Each dictionary of 'records' list has two keys:
+### 'date' : day when the price was recorded
+### 'price' : cheapest price for the prodct at a given time
+###
+###
+### {   id   :  {'title' 
+###              'url'
+###              'records'   :   [{'date'
+###                                'price'}]
+###
+###
+### The file data/dummydata.gtd contains an example of a database in a clean format
+###
+
 
 # Manages tasks revolving saving, updating and storing games data
 class dataManager:
@@ -37,15 +64,15 @@ class dataManager:
 
             # If the last record is from this day, it's price is overwritten
             if len(self.storedData[game]['records']) > 0:
-                if self.storedData[game]['records'][-1]['dateAndTime'] == date : 
+                if self.storedData[game]['records'][-1]['date'] == date : 
                     self.storedData[game]['records'][-1]['price'] = scrapped[game]
 
                 else:
-                    record = {'dateAndTime': date, 'price': scrapped[game]}
+                    record = {'date': date, 'price': scrapped[game]}
                     self.storedData[game]['records'].append(record)
             # If this is the first record for the day, store if directly
             else:
-                record = {'dateAndTime': date, 'price': scrapped[game]}
+                record = {'date': date, 'price': scrapped[game]}
                 self.storedData[game]['records'].append(record)
 
         self.storeGamesData()
@@ -71,7 +98,7 @@ class dataManager:
 
         price = self.scrapper.getPrice(titleAndId['id'])
 
-        record = {'dateAndTime' : time.strftime("%x"), 'price' : price}
+        record = {'date' : time.strftime("%x"), 'price' : price}
         # Check first if the game is already being tracked, if it is not, then add it to the dictionary
         if titleAndId['id'] not in self.getGamesIDsList():
             self.storedData[titleAndId['id']] = {'title' : titleAndId['title'], 'url' : url, 'records' : [record]}
@@ -84,6 +111,11 @@ class dataManager:
     # Removes game whose id is situated at position @index in the keys list of the prudict data dictionary
     def removeGame(self, index):
         self.storedData.pop(self.getGamesIDsList()[index])
+        self.storeGamesData()
+
+    # Changes the title of a product
+    def setGameTitle(self, index, newTitle):
+        self.storedData[self.getGamesIDsList()[index]]['title'] = newTitle
         self.storeGamesData()
 
     # Returns amount of games stored in dictionary
